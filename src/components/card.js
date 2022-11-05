@@ -1,14 +1,12 @@
 import React from "react";
 import star from "../images/star.png";
-import zaferes from "../images/zeferes.png";
 
 export default function Card(props) {
-  image = "../images/" + props.img;
   return (
     <div className="card">
       <div className="card--image">
         <h3 className="card--availability">SOLD OUT</h3>
-        <img src={image}></img>
+        <img src={require(`../images/${props.img}`)} alt="not working"></img>
       </div>
       <div className="card--rating">
         <img src={star}></img>
