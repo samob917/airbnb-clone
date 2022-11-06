@@ -2,23 +2,33 @@ import React from "react";
 import star from "../images/star.png";
 
 export default function Card(props) {
+  let badgeText;
+  if (props.item.openSpots === 0) {
+    badgeText = "SOLD OUT";
+  } else if (props.item.location === "Online") {
+    badgeText = "ONLINE";
+  }
   return (
     <div className="card">
-      <div className="card--image">
-        <h3 className="card--availability">SOLD OUT</h3>
-        <img src={require(`../images/${props.img}`)} alt="not working"></img>
+      {badgeText && <div className="card--badge">{badgeText}</div>}
+      <img
+        src={require(`../images/${props.item.coverImg}`)}
+        className="card--image"
+      />
+      <div className="card--stats">
+        <img src={require("../images/star.png")} className="card--star" />
+        <span>{props.item.stats.rating}</span>
+        <span className="gray">({props.item.stats.reviewCount}) • </span>
+        <span className="gray">{props.item.location}</span>
       </div>
-      <div className="card--rating">
-        <img src={star}></img>
-        <p className="card--dark-text">{props.rating}</p>
-        <p className="card--light-text">
-          ({props.reviewCount}) &middot; {props.country}
-        </p>
-      </div>
-      <p className="card--desc">{props.title}</p>
-      <div className="card--price">
-        <h5>From ${props.price}</h5>
-      </div>
+      <p className="card--title">{props.item.title}</p>
+      <p className="card--price">
+        <span className="bold">From ${props.item.price}</span> / person
+      </p>
     </div>
   );
 }
+
+/*
+
+        */
